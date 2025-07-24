@@ -1,8 +1,9 @@
 <template>
   <div>
-    <header>
+    <!-- <header>
       <h1>hello</h1>
-    </header>
-   <NuxtPage/>
+    </header> -->
+    
+   <NuxtPage />
   </div>
 </template>

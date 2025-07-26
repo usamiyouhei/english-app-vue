@@ -1,5 +1,6 @@
-import { Word } from "../types/Word";
+import type { Word } from "../types/Word";
 
+const STORAGE_KEY = "my_word_list"
 
 export const useWords = () => {
   const defaultWords: Word[] = [
@@ -9,3 +10,4 @@ export const useWords = () => {
     { english: 'tea', japanese: 'お茶' }
   ]
 }
+

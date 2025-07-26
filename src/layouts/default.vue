@@ -4,11 +4,23 @@
       英単語アプリ
     </header>
 
-    
+    <main>
+      <slot/>
+    </main>
+
+    <nav>
+      <NuxtLink to="/">学習</NuxtLink>
+      <NuxtLink to="/add">追加</NuxtLink>
+      <NuxtLink to="/list">一覧</NuxtLink>
+      <NuxtLink to="/setting">設定</NuxtLink>
+    </nav>
   </div>
+
 </template>
 
 <script setup lang="ts">
+import { NuxtLink } from '#components';
+
 /**===================================================================================================================
  * 
  ===================================================================================================================**/

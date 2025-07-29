@@ -26,5 +26,18 @@ export const useWords = () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(words.value))
     }
   } 
-  
+
+  const addWord = (word: Word) => {
+    words.value.push(word)
+    saveWords()
+  }
+
+  const toggleLearned = ( index: number) => {
+    const word = words.value[index]
+    if(word) {
+      word.isLearned = !word.isLearned
+      saveWords()
+    }
+  }
+  return{ words, addWord, toggleLearned}
 }

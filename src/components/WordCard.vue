@@ -1,8 +1,11 @@
 <template>
-  <div class="w-full max-w-md mx-auto">
-    <div>
-      <p>
-        {}
+  <div class="w-full max-w-md mx-auto perspective">
+    <div
+      class="relative h-48 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-300 bg-gray-400 cursor-pointer"
+      :class="{ flipped : flipped}"
+      @click="flipped = !flipped">
+      <p class="text-xl backface-hidden">
+        {{ word ? (flipped ? word.english : word.japanese) : "Loading..." }}
       </p>
     </div>
   </div>
@@ -14,7 +17,7 @@ import type { Word } from "../types/Word";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
-  defineProps<{word: Word}>()
+  defineProps<{word: Word | undefined}>()
 
   const flipped = ref(false)
 
@@ -80,4 +83,20 @@ function onChange(value: any) {
 </script>
 
 <style lang="scss" scoped>
+.perspective {
+  perspective: 1000px;
+}
+
+.card {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <h1>WordApp</h1>
+  <div>
+    <WordCard/>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -5,7 +5,7 @@
       :class="{ flipped : flipped}"
       @click="flipped = !flipped">
       <p class="text-xl backface-hidden">
-        {{ word ? (flipped ? word.english : word.japanese) : "Loading..." }}
+        {{ word ? (flipped ?   word.japanese : word.english) : "Loading..." }}
       </p>
     </div>
   </div>
@@ -88,7 +88,7 @@ function onChange(value: any) {
 }
 
 .card {
-  transition: transform 0.5s;
+  transition: transform 1s;
   transform-style: preserve-3d;
 }
 

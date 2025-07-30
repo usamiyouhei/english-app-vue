@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header class="flex justify-center align-item-center">
       英単語アプリ
     </header>
 

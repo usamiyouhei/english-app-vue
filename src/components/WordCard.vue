@@ -1,12 +1,22 @@
 <template>
   <div class="w-full max-w-md mx-auto perspective">
     <div
-      class="relative h-48 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-300 bg-gray-400 cursor-pointer"
+      class="card relative h-48 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-300 bg-gray-400 cursor-pointer"
       :class="{ flipped : flipped}"
       @click="flipped = !flipped">
-      <p class="text-xl backface-hidden">
+
+      <!-- 表面 -->
+        <div class="face front">
+          {{ word?.english || "Loading..." }}
+        </div>
+
+        <!-- 裏面 -->
+        <div class="face back">
+          {{ word?.japanese || "Loading..." }}
+        </div>
+      <!-- <p class="text-xl backface-hidden">
         {{ word ? (flipped ?   word.japanese : word.english) : "Loading..." }}
-      </p>
+      </p> -->
     </div>
   </div>
 </template>
@@ -88,8 +98,11 @@ function onChange(value: any) {
 }
 
 .card {
-  transition: transform 1s;
+  width: 100%;
+  height: 12rem;
+  position: relative;
   transform-style: preserve-3d;
+  transition: transform 0.6s;
 }
 
 .flipped {
@@ -99,4 +112,6 @@ function onChange(value: any) {
 .backface-hidden {
   backface-visibility: hidden;
 }
+
+
 </style>

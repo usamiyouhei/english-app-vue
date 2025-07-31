@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-md mx-auto perspective">
     <div
-      class="card relative h-48 flex items-center justify-center rounded-xl shadow-lg transition-transform duration-300 bg-gray-400 cursor-pointer"
+      class="word-card "
       :class="{ flipped : flipped}"
       @click="flipped = !flipped">
 
@@ -97,12 +97,39 @@ function onChange(value: any) {
   perspective: 1000px;
 }
 
-.card {
+.word-card {
   width: 100%;
   height: 12rem;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
+  cursor: pointer;
+}
+
+.word-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  font-size: 1.25rem;
+  background-color: #e5e7eb;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+
+}
+
+.front {
+  z-index: 2;
+}
+.back {
+  transform: rotateY(180deg);
 }
 
 .flipped {

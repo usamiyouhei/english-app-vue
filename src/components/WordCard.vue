@@ -3,7 +3,7 @@
     <div
       class="word-card "
       :class="{ flipped : flipped}"
-      @click="flipped = !flipped">
+      @click="$emit('flip')">
 
       <!-- 表面 -->
         <div class="face front">
@@ -27,9 +27,16 @@ import type { Word } from "../types/Word";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
-  defineProps<{word: Word | undefined}>()
+  defineProps<{
+    word: Word | undefined
+    flipped: boolean
+  }>()
 
-  const flipped = ref(false)
+  defineEmits(['flip'])
+
+  // const flipped = ref(false)
+
+
 
  //------------------------------------------------------------------------------------------------------------
 // 引数
@@ -102,7 +109,7 @@ function onChange(value: any) {
   height: 12rem;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 600ms;
   cursor: pointer;
 }
 

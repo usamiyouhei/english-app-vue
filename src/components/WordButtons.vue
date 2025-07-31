@@ -1,7 +1,18 @@
 <template>
+  <div class="flex justify-center gap-4 mt-4">
+    <button @click="prev" class="border px-4 py-2 rounded">←</button>
+    <button @click="next" class="border px-4 py-2 rounded">→</button>
+    <button @click="onToggle" class="border px-4 py-2 rounded">{{ isLearned ? '未学習に戻す' : '学習済み' }}</button>
+  </div>
 </template>
 
 <script setup lang="ts">
+defineProps<{
+  prev:() => void;
+  next: () => void;
+  isLearned: boolean;
+  onToggle: () => void
+}>()
 /**===================================================================================================================
  * 
  ===================================================================================================================**/

@@ -1,6 +1,16 @@
 <template>
   <div>
-    <WordCard :word="words[currentIndex]"/>
+    <WordCard 
+      :word="words[currentIndex]"
+      :flipped="flipped"
+      @flip="handleFlip"
+      />
+    <WordButtons
+      :prev="prev"
+      :next="next"
+      :onToggle="() => toggleLearned(currentIndex)"
+      :isLearned="words[currentIndex]?.isLearned || false"
+      />
   </div>
 </template>
 
@@ -11,9 +21,30 @@ import { useWords } from "../composables/useWord";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
+// 全wordsをuseWords()から紐付け
   const { words } = useWords()
+// 現在のIndexを初期値０で設定
   const currentIndex = ref(0)
+// flippedの初期値をfalseに
+  const flipped = ref(false)
+  
+// 戻るボタン（現在の値＝（現在のIndexから−１＋words.value.length）％ words.value.length
+  const prev = () => {
+    flipped.value = false
+    setTimeout(() => {
+      currentIndex.value = (currentIndex.value - 1 + words.value.length) % words.value.length;
+    }, 200);
+  }
+  const next = () => {
+    flipped.value = false
+    setTimeout(() => {
+      currentIndex.value = (currentIndex.value + 1) % words.value.length;
+    }, 200);
+  }
 
+  const handleFlip = () => {
+    flipped.value = !flipped.value
+  }
  //------------------------------------------------------------------------------------------------------------
 // 引数
 //------------------------------------------------------------------------------------------------------------

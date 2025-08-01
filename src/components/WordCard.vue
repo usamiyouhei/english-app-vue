@@ -134,6 +134,7 @@ function onChange(value: any) {
 
 .front {
   z-index: 2;
+  background-color: #ccc;
 }
 .back {
   transform: rotateY(180deg);

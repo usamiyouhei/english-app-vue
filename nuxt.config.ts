@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src/',
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['@/assets/css/main.css']
+  css: ['@/assets/css/main.css'],
+  plugins: ['~/plugins/touchEvents.ts'],
 
 })

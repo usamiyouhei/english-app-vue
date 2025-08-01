@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div 
+    v-touch:swipe.left="handleSwipeLeft"
+    v-touch:swipe.right="handleSwipeRight"
+      >
     <WordCard 
       :word="words[currentIndex]"
       :flipped="flipped"
@@ -37,6 +40,20 @@ import { useWords } from "../composables/useWord";
   }
   const next = () => {
     flipped.value = false
+    setTimeout(() => {
+      currentIndex.value = (currentIndex.value + 1) % words.value.length;
+    }, 200);
+  }
+
+  const handleSwipeLeft = () => {
+     flipped.value = false
+    setTimeout(() => {
+      currentIndex.value = (currentIndex.value - 1 + words.value.length) % words.value.length;
+    }, 200);
+  }
+
+  const handleSwipeRight = () => {
+     flipped.value = false
     setTimeout(() => {
       currentIndex.value = (currentIndex.value + 1) % words.value.length;
     }, 200);

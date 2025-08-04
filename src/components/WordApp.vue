@@ -14,11 +14,23 @@
       :onToggle="toggleLearned"
       :isLearned="currentWord?.isLearned || false"
       />
+      <!-- modal button -->
       <button 
         @click="openModal" 
         class="mt-4 px-4 py-2 bg-yellow-600 rounded"
         > ＋ 単語を追加
       </button>
+
+      <!-- modal -->
+       <div
+        class="fixed inset-0 bg-black opacity-50 flex iten-center justify-center z-50">
+        <div>
+          <button>
+            ×
+          </button>
+          <WordForm/>
+        </div>
+       </div>
   </div>
 </template>
 
@@ -26,6 +38,7 @@
 import type { Word } from "../types/Word";
 import { ref } from "vue";
 import { useWords } from "../composables/useWord";
+import WordForm from "../components/WordForm.vue";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/

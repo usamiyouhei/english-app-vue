@@ -11,9 +11,14 @@
     <WordButtons
       :prev="prev"
       :next="next"
-      :onToggle="() => toggleLearned(currentIndex)"
-      :isLearned="words[currentIndex]?.isLearned || false"
+      :onToggle="toggleLearned"
+      :isLearned="currentWord?.isLearned || false"
       />
+      <button 
+        @click="openModal" 
+        class="mt-4 px-4 py-2 bg-yellow-600 rounded"
+        > ＋ 単語を追加
+      </button>
   </div>
 </template>
 
@@ -46,14 +51,14 @@ import { useWords } from "../composables/useWord";
   }
 
   const handleSwipeLeft = () => {
-     flipped.value = false
+    flipped.value = false
     setTimeout(() => {
       currentIndex.value = (currentIndex.value - 1 + words.value.length) % words.value.length;
     }, 200);
   }
 
   const handleSwipeRight = () => {
-     flipped.value = false
+    flipped.value = false
     setTimeout(() => {
       currentIndex.value = (currentIndex.value + 1) % words.value.length;
     }, 200);
@@ -61,6 +66,23 @@ import { useWords } from "../composables/useWord";
 
   const handleFlip = () => {
     flipped.value = !flipped.value
+  }
+
+  const currentWord = computed(() => words.value[currentIndex.value])
+
+  const toggleLearned = () => {
+    const index = currentIndex.value
+    if( index >= 0 && index < words.value.length) {
+      const newWords = [...words.value]
+      newWords[currentIndex.value]!.isLearned = !newWords[currentIndex.value]!.isLearned
+      words.value = newWords
+    }
+  }
+
+  const showModal = ref(false)
+  
+  const openModal = () => {
+    showModal.value = true
   }
  //------------------------------------------------------------------------------------------------------------
 // 引数

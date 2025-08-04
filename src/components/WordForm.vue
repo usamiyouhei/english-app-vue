@@ -1,4 +1,11 @@
 <template>
+  <div>
+    <form action="">
+      <input type="text">
+      <input type="text">
+      <button type="submit" >単語を追加</button>
+    </form>
+  </div>
 </template>
 
 <script setup lang="ts">

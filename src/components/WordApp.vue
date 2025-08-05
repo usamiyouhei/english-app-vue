@@ -22,15 +22,20 @@
       </button>
 
       <!-- modal -->
-       <div
-        class="fixed inset-0 bg-black opacity-50 flex iten-center justify-center z-50">
-        <div>
-          <button>
+      <div
+        v-if="showModal"
+        class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+        <div
+          class="bg-white h-60  p-4 rounded shadow-2xl w-11/12 max-w-md text-black relative"
+          >
+          <button
+            class="absolute top-2 right-2 text-black"
+            @click="showModal = false">
             ×
           </button>
           <WordForm/>
         </div>
-       </div>
+      </div>
   </div>
 </template>
 

@@ -1,9 +1,24 @@
 <template>
-  <div>
-    <form action="">
-      <input type="text">
-      <input type="text">
-      <button type="submit" >単語を追加</button>
+  <div class="bg-white text-black p-6 rounded-xl shadow-xl w-full max-w-md mx-auto">
+    <form
+      @submit.prevent=""
+      class="flex flex-col gap-4">
+      <input
+        v-model="english"
+        type="text"
+        placeholder="English"
+        class="border p-2 rounded focus:outline-none"
+      >
+      <input
+        v-model="japanese"
+        type="text"
+        placeholder="Japanese"
+        class="border p-2 rounded focus:outline-none">
+      <button
+        type="submit"
+        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+        単語を追加
+      </button>
     </form>
   </div>
 </template>

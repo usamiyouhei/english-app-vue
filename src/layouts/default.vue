@@ -1,14 +1,15 @@
 <template>
   <div>
-    <header class="flex justify-center align-item-center">
-      英単語アプリ
+    <header class="flex justify-center align-item-center font-bold">
+      English Word App
     </header>
 
     <main>
       <slot/>
     </main>
 
-    <nav>
+    <nav
+      class="flex items-center justify-center gap-4 mt-6">
       <NuxtLink to="/">学習</NuxtLink>
       <NuxtLink to="/add">追加</NuxtLink>
       <NuxtLink to="/list">一覧</NuxtLink>

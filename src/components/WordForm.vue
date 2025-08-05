@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white text-black p-6 rounded-xl shadow-xl w-full max-w-md mx-auto">
     <form
-      @submit.prevent=""
+      @submit.prevent="handleSubmit"
       class="flex flex-col gap-4">
       <input
         v-model="english"
@@ -24,10 +24,26 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import type { Word } from "../types/Word";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
-//------------------------------------------------------------------------------------------------------------
+const emit = defineEmits<{
+  (e: 'add', word: Word ) : void
+}>()
+
+
+const english = ref('')
+const japanese = ref('')
+
+const handleSubmit = () => {
+  if(!english.value.trim() || !japanese.value.trim()) return
+  emit('add', { english: english.value.trim(), japanese: japanese.value.trim()})
+  english.value=''
+  japanese.value=''
+}
+ //------------------------------------------------------------------------------------------------------------
 // 引数
 //------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------

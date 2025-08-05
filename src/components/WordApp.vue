@@ -15,11 +15,13 @@
       :isLearned="currentWord?.isLearned || false"
       />
       <!-- modal button -->
+      <div class="mt-4 text-center">
       <button 
         @click="openModal" 
-        class="mt-4 px-4 py-2 bg-yellow-600 rounded"
+        class="mt-4 px-4 py-2 bg-yellow-600 rounded mx-auto"
         > ＋ 単語を追加
       </button>
+      </div>
 
       <!-- modal -->
       <div
@@ -33,7 +35,7 @@
             @click="showModal = false">
             ×
           </button>
-          <WordForm/>
+          <WordForm @add="handleAddWord"/>
         </div>
       </div>
   </div>
@@ -48,7 +50,7 @@ import WordForm from "../components/WordForm.vue";
  * 
  ===================================================================================================================**/
 // 全wordsをuseWords()から紐付け
-  const { words } = useWords()
+  const { words, addWord } = useWords()
 // 現在のIndexを初期値０で設定
   const currentIndex = ref(0)
 // flippedの初期値をfalseに
@@ -98,9 +100,14 @@ import WordForm from "../components/WordForm.vue";
   }
 
   const showModal = ref(false)
-  
+
   const openModal = () => {
     showModal.value = true
+  }
+
+  const handleAddWord = (word: { english: string, japanese: string }) => {
+    addWord(word)
+    showModal.value = false
   }
  //------------------------------------------------------------------------------------------------------------
 // 引数

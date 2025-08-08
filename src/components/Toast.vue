@@ -1,57 +1,20 @@
 <template>
-  <div class="bg-white text-black p-6 rounded-xl shadow-xl w-full max-w-md mx-auto">
-    <form
-      @submit.prevent="handleSubmit"
-      class="flex flex-col gap-4">
-      <input
-        v-model="english"
-        type="text"
-        placeholder="English"
-        class="border p-2 rounded focus:outline-none"
-      >
-      <input
-        v-model="japanese"
-        type="text"
-        placeholder="Japanese"
-        class="border p-2 rounded focus:outline-none">
-
-        <!-- error message -->
-         <p v-if="error" class="text-red-500 text-sm">{{ error }}</p>
-      <button
-        type="submit"
-        class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-        単語を追加
-      </button>
-    </form>
+  <div v-if="show"
+    class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white rounded py-2 px-4 shadow-lg transition-opacity duration-300">
+    {{ message }}
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Word } from "../types/Word";
+defineProps<{
+  message: string;
+  show: boolean;
+}>()
+
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
-const emit = defineEmits<{
-  (e: 'add', word: Word ) : void
-}>()
-
-
-const english = ref('')
-const japanese = ref('')
-const error = ref('')
-
-const handleSubmit = () => {
-  if(!english.value.trim() || !japanese.value.trim()){
-  error.value='英語と日本語の両方入力してください。'
-  return
-}
-  emit('add', { english: english.value.trim(), japanese: japanese.value.trim()})
-  english.value=''
-  japanese.value=''
-  error.value=''
-}
- //------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 // 引数
 //------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------

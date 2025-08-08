@@ -38,7 +38,10 @@
           <WordForm @add="handleAddWord"/>
         </div>
       </div>
+
   </div>
+        <Toast :message="toastMessage" :show="showToast"/>
+
 </template>
 
 <script setup lang="ts">
@@ -46,6 +49,7 @@ import type { Word } from "../types/Word";
 import { ref } from "vue";
 import { useWords } from "../composables/useWord";
 import WordForm from "../components/WordForm.vue";
+import Toast from "../components/Toast.vue";
 /**===================================================================================================================
  * 
  ===================================================================================================================**/
@@ -55,7 +59,10 @@ import WordForm from "../components/WordForm.vue";
   const currentIndex = ref(0)
 // flippedの初期値をfalseに
   const flipped = ref(false)
-  
+  const toastMessage = ref('')
+  const showToast = ref(false)
+
+
 // 戻るボタン（現在の値＝（現在のIndexから−１＋words.value.length）％ words.value.length
   const prev = () => {
     flipped.value = false
@@ -105,9 +112,21 @@ import WordForm from "../components/WordForm.vue";
     showModal.value = true
   }
 
+  const showToastMessage = ( msg: string) => {
+    toastMessage.value = msg;
+    showToast.value = true;
+    setTimeout(() => ( showToast.value = false), 2000);
+  }
+
   const handleAddWord = (word: { english: string, japanese: string }) => {
+    if(words.value.some( w => w.english === word.english)){
+      showToastMessage('既に登録された単語です')
+      return
+    }
+    
     addWord(word)
-    showModal.value = false
+    showToastMessage('単語を登録しました！')
+    showModal.value = false;
   }
  //------------------------------------------------------------------------------------------------------------
 // 引数
